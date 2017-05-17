@@ -1,0 +1,15 @@
+---
+language:
+  name: pddl
+
+objects:
+  loc1: start-location
+  loc2: recognition-location
+  loc3: under-actuated-location
+  loc4: grasp-location
+
+fluents:
+  - name: at
+    args:
+      - loc1
+    type: boolean

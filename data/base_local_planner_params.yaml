@@ -1,0 +1,41 @@
+TrajectoryPlannerROS:
+
+
+  # Steve: these parameters don't exist anymore?
+  #max_rotational_vel: 0.1 # 1.0
+  #min_in_place_rotational_vel: 0.005
+
+  max_vel_x: 0.4 # 1.0 #0.45
+  min_vel_x: 0.1 # 0.25 #0.1
+
+  # Steve added
+  min_vel_theta: -0.5
+  max_vel_theta: 0.5
+  min_in_place_vel_theta: 0.5 # Very sensitive?
+
+  acc_lim_theta: 0.5 # 1.0
+  acc_lim_x: 0.5 # 1.0
+  acc_lim_y: 0.5 # 1.0
+
+  # Goal parameters
+  yaw_goal_tolerance: 0.1 #**0.5 #0.3
+  xy_goal_tolerance: 0.2 #No stava
+  latch_xy_goal_tolerance: true # steve
+
+  path_distance_bias: 1.0 # 1.0
+
+  holonomic_robot: true
+
+  dwa: false # Makes things much better
+
+  meter_scoring: true
+
+  # Steve
+  # heading_scoring: true # steve
+  pdist_scale: 5.0
+  # occdist_scale: 0.2 # 0.01
+
+  vx_samples: 40
+  vtheta_samples: 40
+  y_vels: -0.3,-0.1,-0.05,0.05,0.1,-0.3
+  sim_time: 2.0

@@ -1,0 +1,26 @@
+#! /usr/bin/env python
+
+import rospy
+from mpex_msgs.srv import SetPddlGoal
+from mpex_msgs.msg import AchieveAction, AchieveGoal, PddlGoal
+from actionlib import SimpleActionClient
+
+
+if __name__ == '__main__':
+    rospy.init_node('achieve_sim_goals', anonymous=True)
+    # First, register the goal.
+    goal_setter = rospy.ServiceProxy('mpex/goals/register/pddl', SetPddlGoal)
+    res = goal_setter(PddlGoal('(and (at loc1) (grasp-task-done) (under-actuated-task-done) (recognition-task-done))'))
+    goal_id = res.goal_id
+
+    print goal_id
+
+    achieve_client = SimpleActionClient('mpex/achieve', AchieveAction)
+
+    achieve_client.wait_for_server()
+
+    goal = AchieveGoal(goal_id, False)
+
+    achieve_client.send_goal(goal)
+
+    achieve_client.wait_for_result()

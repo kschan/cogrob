@@ -1,0 +1,15 @@
+<launch>
+    <group ns="incremental">
+        <!-- Move base -->
+        <remap from="cmd_vel" to="/summit_xl/robot_control/cmd_vel" />
+        <node pkg="move_base" type="move_base" name="move_base">
+            <rosparam file="$(find cogrob)/data/costmap_common_params.yaml" command="load" ns="global_costmap" />
+            <rosparam file="$(find cogrob)/data/costmap_common_params.yaml" command="load" ns="local_costmap" />
+            <rosparam file="$(find cogrob)/data/global_costmap_params.yaml" command="load" />
+            <rosparam file="$(find cogrob)/data/local_costmap_params.yaml" command="load" />
+            <rosparam file="$(find cogrob)/data/base_local_planner_params.yaml" command="load" />
+            <param name="base_global_planner" value="move_incremental/MoveIncrementalROS" />
+        </node>
+    </group>
+
+</launch>
